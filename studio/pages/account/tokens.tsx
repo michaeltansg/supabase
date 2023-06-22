@@ -20,7 +20,7 @@ const UserAccessTokens: NextPageWithLayout = () => {
       <div className="flex items-center justify-between">
         <FormHeader
           title="Access Tokens"
-          description="Personal access tokens can be used with our management API or the Supabase CLI"
+          description="Personal access tokens can be used with our management API or the Supabase CLI. They inherit the same scopes as your actions on the dashboard."
         />
         <div className="flex items-center space-x-4 mb-6">
           <div className="flex items-center space-x-2">
