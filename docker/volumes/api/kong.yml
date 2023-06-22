@@ -34,6 +34,11 @@ services:
           - /auth/v1/verify
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000 # Supabase Studio
+          - http://localhost:3000 # Quivr Frontend
+          - http://localhost:5050 # Quivr Backend
   - name: auth-v1-open-callback
     url: http://auth:9999/callback
     routes:
@@ -43,6 +48,11 @@ services:
           - /auth/v1/callback
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000 # Supabase Studio
+          - http://localhost:3000 # Quivr Frontend
+          - http://localhost:5050 # Quivr Backend
   - name: auth-v1-open-authorize
     url: http://auth:9999/authorize
     routes:
@@ -52,6 +62,11 @@ services:
           - /auth/v1/authorize
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000 # Supabase Studio
+          - http://localhost:3000 # Quivr Frontend
+          - http://localhost:5050 # Quivr Backend
 
   ## Secure Auth routes
   - name: auth-v1
@@ -64,6 +79,11 @@ services:
           - /auth/v1/
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000 # Supabase Studio
+          - http://localhost:3000 # Quivr Frontend
+          - http://localhost:5050 # Quivr Backend
       - name: key-auth
         config:
           hide_credentials: false
@@ -85,6 +105,11 @@ services:
           - /rest/v1/
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000
+          - http://localhost:3000
+          - http://localhost:5050
       - name: key-auth
         config:
           hide_credentials: true
@@ -106,6 +131,11 @@ services:
           - /graphql/v1
     plugins:
       - name: cors
+        config:
+          origins:
+          - http://localhost:4000
+          - http://localhost:3000
+          - http://localhost:5050
       - name: key-auth
         config:
           hide_credentials: true
@@ -153,6 +183,19 @@ services:
           - /storage/v1/
     plugins:
       - name: cors
+
+  ## Edge Functions routes
+  - name: functions-v1
+    _comment: 'Edge Functions: /functions/v1/* -> http://functions:9000/*'
+    url: http://functions:9000/
+    routes:
+      - name: functions-v1-all
+        strip_path: true
+        paths:
+          - /functions/v1/
+    plugins:
+      - name: cors
+
   ## Analytics routes
   - name: analytics-v1
     _comment: 'Analytics: /analytics/v1/* -> http://logflare:4000/*'
